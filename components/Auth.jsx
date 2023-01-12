@@ -71,7 +71,74 @@ function Auth() {
 		enableInterval(false);
 	}
 
-	return <div>Auth</div>;
+	return (
+        <div className={containerStyle}>
+            <h1 className={headerStyle}>Biconomy Authentication Example</h1>
+            {
+                !smartAccount && !isloading && (
+                    <button
+                        className={buttonStyle}
+                        onClick={login}
+                    >
+                        Login
+                    </button>
+                )
+            }
+            {
+                isloading && (
+                    <p>Loading your account details, please wait...</p>
+                )
+            }
+            {
+                !!smartAccount && (
+                    <div className={detailsContainerStyle}>
+                        <h3>Smart Account Address:</h3>
+                        <p>{smartAccount.address}</p>
+                        <button
+                            className={buttonStyle}
+                            onClick={logout}
+                        >
+                            Logout
+                        </button>
+                    </div>
+                )
+            }
+        </div>
+    );
 }
+
+const detailsContainerStyle=css`
+    margin-top:10px;
+`
+
+const buttonStyle=css`
+    padding:14px;
+    width:300px;
+    border:none;
+    cursor:pointer;
+    border-radius:999px;
+    outline:none;
+    margin-top:20px;
+    transition:all 0.25s;
+    &:hover{
+        background-color:rgba(0,0,0,0.2);
+    }
+`
+
+const headerStyle=css`
+    font-size:44px;
+`
+
+
+const containerStyle=css`
+    width:900px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    padding-top:100px;
+`
+
+
 
 export default Auth;
