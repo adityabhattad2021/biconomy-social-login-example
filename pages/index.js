@@ -4,11 +4,9 @@ import { Suspense } from "react";
 
 function Index(){
   const SocialLoginDynamic=dynamic(
-    ()=>{
-      import("../components/Auth").then((res)=>res.default),
-      {
-        ssr:false,
-      }
+    ()=>import("../components/Auth").then((response)=>response.default),
+    {
+      ssr:false,
     }
   )
 
@@ -21,3 +19,5 @@ function Index(){
     )
 
 }
+
+export default Index;
